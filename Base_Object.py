@@ -98,4 +98,16 @@ class base_object:
                 print()
                 print(f"{self.name}: new velocity {self.velocity}")
                 
-                
+    def plot(self, ax, velocity_scale=.05, radius_scale=50):
+        ax.scatter(*self.position, s=self.radius*radius_scale)
+        starting_point = self.position
+        numpoints=10
+        line_points = np.zeros([len(self.position), numpoints])
+        for i in range(len(starting_point)):
+            line_points[i, :] = np.linspace(starting_point[i], starting_point[i]+self.velocity[i]*velocity_scale, numpoints)
+        ax.plot(*line_points)
+            
+            
+            
+            
+            
